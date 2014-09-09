@@ -1,0 +1,84 @@
+
+event.control.fgcolor = 200 200 200
+if $_running
+	#0.fgcolor = 100 100 100
+	#1.fgcolor = 100 100 100
+else
+	#0.fgcolor = 200 200 200
+	#1.fgcolor = 200 200 200
+endif
+if $event.control.type = button
+	event.control.imagemode = -8
+	if $event.control.state = 0
+		event.control.image = 1
+		-- event.control.bgcolor = 200 200 200
+	elif $event.control.state = 1
+		event.control.image = 2
+		-- event.control.bgcolor = 220 220 220
+	else
+		-- clicked
+		event.control.image = 3
+		-- event.control.bgcolor = 180 180 180
+	endif
+endif
+
+if $_action = init
+	window.title = Connected Worlds: The Adventure
+	window.width = 550
+	window.height = 549
+	window.image = 0
+	#0.type = button
+	#1.type = button
+	#2.type = button
+	#3.type = button
+	#4.type = button
+	#5.type = text
+	#0.rect = 120 140 430 170
+	#1.rect = 120 180 430 210
+	#2.rect = 120 220 430 250
+	#3.rect = 040 470 080 510
+	#4.rect = 090 470 130 510
+	#5.rect = 10 10 200 100
+	#3.text = EN
+	#4.text = LV
+	#5.text =
+	language = en-US
+elif $_action = #0.clicked & $_running =
+	run = notepad script/script.txt
+elif $_action = #1.clicked & $_running =
+	test = 1
+elif $_action = #2.clicked
+	quit = 1
+elif $_action = #3.clicked
+	language = en-US
+elif $_action = #4.clicked
+	language = lv-LV
+elif $_action = archive.test
+	#5.text = $tt_test $(archive.percent)%
+	if $_action.done
+		#5.text = 
+	endif
+elif $_action = archive.extract
+	#5.text = $tt_load $(archive.percent)%
+	if $_action.done
+		#5.text = 
+	endif
+endif
+
+if $language = en-US
+	tt_test = Testing...
+	tt_load = Loading...
+	#0.text = Play the game
+	#1.text = Install
+	#2.text = Quit
+	#3.fgcolor = 200 120 110
+	#4.fgcolor = 200 200 200
+elif $language = lv-LV
+	tt_test = Pārbauda...
+	tt_load = Ielādē...
+	#0.text = Spēlēt spēli
+	#1.text = Instalēt spēli
+	#2.text = Iziet
+	#3.fgcolor = 200 200 200
+	#4.fgcolor = 200 120 110
+endif

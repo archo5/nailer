@@ -1,0 +1,2 @@
+window.image = @background.jpg
+#PLAY.image = @button_core.png

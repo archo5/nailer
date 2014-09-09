@@ -1,0 +1,3 @@
+window.image = @background.jpg
+event.button.image = @button_core.png
+#PLAY.image = @0.bmp

@@ -1,0 +1,44 @@
+
+1. storage
+
+- LZMA archive
+- extracts to temporary / user-specified location
+
+2. i18n
+
+- platform-specific image/font rendering
+- language/os-based (re-)configuration options
+
+3. configuration
+
+- single-level variable lists with conditional setup and variable insertion
+- cannot have interdependencies (like makefiles)
+- ordered for timely resetting
+
+4. resource attachment
+
+- everything is attached at the end of the executable, the last item: 32-bit size of attached data
+- resource offset list (
+- script
+- bitmap image table to store uncompressed 32-bit RGBA bitmaps (compiled in from script .image keys)
+
+
+------- configuration file example ------------
+///////////////////////////////////////////////
+window.width = 400
+window.height = 300
+window.image = @background.jpg
+button.play.rect = 40 140 140 160
+button.install.rect = 40 180 140 200
+button.quit.rect = 40 220 140 240
+language.default = en-GB
+if $language = en-GB
+	button.play.text = Play the game
+	button.install.text = Install
+	button.quit.text = Quit
+elif $language = lv-LV
+	button.play.text = Spēlēt spēli
+	button.install.text = Instalēt spēli
+	button.quit.text = Iziet
+endif
+///////////////////////////////////////////////

@@ -1,0 +1,84 @@
+
+event.control.fgcolor = 200 200 200
+if $_running
+	#PLAY.fgcolor = 100 100 100
+	#INST.fgcolor = 100 100 100
+else
+	#PLAY.fgcolor = 200 200 200
+	#INST.fgcolor = 200 200 200
+endif
+if $event.control.type = button
+	event.control.imagemode = -8
+	if $event.control.state = 0
+		event.control.image = @button_core.png
+		-- event.control.bgcolor = 200 200 200
+	elif $event.control.state = 1
+		event.control.image = @button_core_h.png
+		-- event.control.bgcolor = 220 220 220
+	else
+		-- clicked
+		event.control.image = @button_core_c.png
+		-- event.control.bgcolor = 180 180 180
+	endif
+endif
+
+if $_action = init
+	window.title = Connected Worlds: The Adventure
+	window.width = 550
+	window.height = 549
+	window.image = @background.jpg
+	#PLAY.type = button
+	#INST.type = 
+	#QUIT.type = button
+	#L_EN.type = button
+	#L_LV.type = button
+	#LDRS.type = text
+	#PLAY.rect = 120 140 430 210
+	#INST.rect = 120 180 430 210
+	#QUIT.rect = 120 220 430 290
+	#L_EN.rect = 040 470 080 510
+	#L_LV.rect = 090 470 130 510
+	#LDRS.rect = 10 10 200 100
+	#L_EN.text = EN
+	#L_LV.text = LV
+	#LDRS.text =
+	language = en-US
+elif $_action = #PLAY.clicked & $_running =
+	run = notepad script-src.txt
+elif $_action = #INST.clicked & $_running =
+	test = 1
+elif $_action = #QUIT.clicked
+	quit = 1
+elif $_action = #L_EN.clicked
+	language = en-US
+elif $_action = #L_LV.clicked
+	language = lv-LV
+elif $_action = archive.test
+	#LDRS.text = $tt_test $(archive.percent)%
+	if $_action.done
+		#LDRS.text = 
+	endif
+elif $_action = archive.extract
+	#LDRS.text = $tt_load $(archive.percent)%
+	if $_action.done
+		#LDRS.text = 
+	endif
+endif
+
+if $language = en-US
+	tt_test = Testing...
+	tt_load = Loading...
+	#PLAY.text = Play the game
+	#INST.text = Install
+	#QUIT.text = Quit
+	#L_EN.fgcolor = 200 120 110
+	#L_LV.fgcolor = 200 200 200
+elif $language = lv-LV
+	tt_test = Pārbauda...
+	tt_load = Ielādē...
+	#PLAY.text = Spēlēt spēli
+	#INST.text = Instalēt spēli
+	#QUIT.text = Iziet
+	#L_EN.fgcolor = 200 200 200
+	#L_LV.fgcolor = 200 120 110
+endif
