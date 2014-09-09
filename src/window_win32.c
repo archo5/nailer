@@ -218,7 +218,6 @@ int win_process( int peek )
 	MSG msg;
 	if( peek )
 	{
-		Sleep( 50 );
 		if( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
 		{
 			TranslateMessage( &msg );
